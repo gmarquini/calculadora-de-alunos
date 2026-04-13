@@ -1,0 +1,111 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0 15rem;
+  padding: 40px;
+  background-color: aliceblue;
+  font-size: 1rem;
+  display: flex;
+}
+
+#list span {
+  margin-right: 20px;
+}
+
+.red-text {
+  color: rgb(168, 28, 28);
+}
+
+.container {
+  margin: 10px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(94, 199, 199);
+  width: 89%;
+  border-radius: 20px;
+  align-items: center;
+  box-shadow: 5px 5px 10px rgba(128, 128, 128, 0.514);
+}
+
+.container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.container .list-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 30px;
+  gap: 10px;
+
+  & .student-name {
+    display: inline-block;
+    width: 10rem;
+    padding: 5px;
+    border-radius: 5px;
+    margin-right: 10rem;
+    margin-top: 2px;
+    background-color: rgb(49, 173, 173);
+  }
+}
+
+.container button {
+  margin-top: 20px;
+  padding: 4px;
+  background-color: rgb(255, 255, 255);
+}
+
+label + input {
+  margin-bottom: 10px;
+}
+
+.side {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+}
+
+.result-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+  background-color: rgb(94, 199, 199);
+  border-radius: 20px;
+  height: 100px;
+  width: 80%;
+  padding: 25px;
+  box-shadow: 5px 5px 10px rgba(128, 128, 128, 0.514);
+}
+
+.base {
+  margin: 10px;
+  background-color: rgb(94, 199, 199);
+  border-radius: 20px;
+  height: 100px;
+  width: 80%;
+  padding: 25px;
+  box-shadow: 5px 5px 10px rgba(128, 128, 128, 0.514);
+}
+
+#result {
+  margin-top: 15px;
+  color: white;
+  padding: 10px;
+  border-radius: 4px;
+  align-content: center;
+  justify-items: center;
+  height: 3rem;
+  width: 10rem;
+  min-width: 30px;
+  background-color: rgb(72, 155, 155);
+
+  font-size: 2rem;
+}

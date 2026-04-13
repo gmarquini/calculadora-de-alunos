@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculadora de Alunos</title>
+    <link rel="stylesheet" href="./main.css" />
+  </head>
+  <body>
+    <div class="container">
+      <form action="" id="main-form">
+        <label for="student-name">Nome: </label>
+        <input
+          name="student-name"
+          class="name-input"
+          type="text"
+          placeholder="Nome"
+        />
+
+        <label for="classes">Aulas dadas: </label>
+        <input
+          name="classes"
+          class="classes-input"
+          type="text"
+          placeholder="Quantidade de aulas dadas"
+        />
+
+        <label for="absences">Faltas: </label>
+        <input
+          name="absences"
+          class="absences-input"
+          type="text"
+          placeholder="Quantidade de faltas"
+        />
+
+        <label for="select-value">Valor pago por hora: </label>
+        <select name="select-value" id="select-value">
+          <option value="31.5">Valor atual: 31.50</option>
+          <option value="30.75">Valor antigo: 30.75</option>
+          <option value="29.25">Com desconto: 29.25</option>
+          <option value="52.5">Aula dupla: 52.50</option>
+        </select>
+
+        <button type="submit">Adicionar aluno</button>
+      </form>
+
+      <form class="list-container">
+        <h4>Lista de alunos:</h4>
+        <div id="list"></div>
+        <button type="submit">Somar resultados</button>
+      </form>
+    </div>
+    <div class="side">
+      <div class="result-container">
+        <strong>Resultado:</strong>
+        <div id="result"></div>
+      </div>
+
+      <div class="base">
+        <h4>Valores base:</h4>
+        <div>Aulas comuns: <span class="basic-value"></span></div>
+        <div>Aulas duplas: <span class="double-value"></span></div>
+        <div>Novo valor: <span class="old-value"></span></div>
+      </div>
+    </div>
+
+    <script src="./index.js"></script>
+  </body>
+</html>
