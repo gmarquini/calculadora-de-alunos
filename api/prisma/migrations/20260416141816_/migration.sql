@@ -2,8 +2,8 @@
 CREATE TABLE "students" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
-    "classes" INTEGER NOT NULL,
-    "absences" INTEGER NOT NULL,
+    "classes" INTEGER,
+    "absences" INTEGER,
     "value" DOUBLE PRECISION NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -24,10 +24,11 @@ CREATE TABLE "Month" (
 -- CreateTable
 CREATE TABLE "_MonthToStudents" (
     "A" TEXT NOT NULL,
-    "B" TEXT NOT NULL,
-
-    CONSTRAINT "_MonthToStudents_AB_pkey" PRIMARY KEY ("A","B")
+    "B" TEXT NOT NULL
 );
+
+-- CreateIndex
+CREATE UNIQUE INDEX "_MonthToStudents_AB_unique" ON "_MonthToStudents"("A", "B");
 
 -- CreateIndex
 CREATE INDEX "_MonthToStudents_B_index" ON "_MonthToStudents"("B");
