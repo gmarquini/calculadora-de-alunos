@@ -1,8 +1,8 @@
-import { useState } from 'react'
 import './App.css'
+import FormComponent from './components/formComponent'
 
 function App() {
-  return <div>Hello World</div>
+  return <FormComponent></FormComponent>
 }
 
 export default App

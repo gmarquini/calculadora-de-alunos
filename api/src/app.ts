@@ -2,7 +2,7 @@ import fastify from 'fastify'
 import { routes } from './routes/index'
 import { fastifyCookie as cookie } from '@fastify/cookie'
 
-export function createApp() {
+function createApp() {
   const app = fastify()
 
   app.register(cookie)
@@ -12,3 +12,7 @@ export function createApp() {
 
   return app
 }
+
+const app = createApp()
+
+export { app }
