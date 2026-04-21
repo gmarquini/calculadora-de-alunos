@@ -54,8 +54,6 @@ mainForm.addEventListener('submit', (e) => {
 // Dispara quando clica em "somar resultados"
 listContainer.addEventListener('submit', (e) => {
   e.preventDefault()
-  console.log('Alunos Cadastrados:')
-  console.log(students)
   some()
 })
 
