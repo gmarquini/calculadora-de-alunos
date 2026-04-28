@@ -2,7 +2,6 @@ import { prisma } from '../database/prisma'
 import { z } from 'zod'
 import { randomUUID } from 'node:crypto'
 import { FastifyRequest, FastifyReply } from 'fastify'
-import { disconnect } from 'node:cluster'
 
 class studentsController {
   async create(req: FastifyRequest, reply: FastifyReply) {
@@ -14,9 +13,10 @@ class studentsController {
       classes: z.number(),
       absences: z.number(),
       value: z.number(),
+      month: z.number(),
     })
 
-    const { name, classes, absences, value } = bodySchema.parse(req.body)
+    const { name, classes, absences, value, month } = bodySchema.parse(req.body)
 
     // Adicionando os dados
     const student = {
@@ -25,6 +25,7 @@ class studentsController {
       classes: classes,
       absences: absences,
       value: value,
+      month: month,
     }
 
     await prisma.students.create({ data: student })
@@ -33,13 +34,23 @@ class studentsController {
   }
 
   async index(req: FastifyRequest, reply: FastifyReply) {
+    const querySchema = z.object({
+      month: z.coerce.number().min(1).max(12).optional(),
+    })
+
+    const { month } = querySchema.parse(req.query)
+
+    const where = month !== undefined ? { month } : {}
+
     const students = await prisma.students.findMany({
+      where,
       select: {
         id: true,
         name: true,
         classes: true,
         absences: true,
         value: true,
+        month: true,
       },
     })
 
