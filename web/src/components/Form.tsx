@@ -1,11 +1,62 @@
+import { createNewStudent } from '../services/CreateNewStudent'
 import { Button } from './Button'
+import { useRef } from 'react'
 
-function Form() {
+type Props = {
+  onStudentCreated: () => void
+  onMonthChange: (month: number) => void
+  selectedMonth: number
+}
+
+function Form({ onStudentCreated, onMonthChange, selectedMonth }: Props) {
+  const nameInputRef = useRef<HTMLInputElement>(null)
+
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+
+    const form = event.currentTarget
+    const formData = new FormData(event.currentTarget)
+
+    const data = {
+      name: String(formData.get('student-name')),
+      classes: Number(formData.get('classes')),
+      absences: Number(formData.get('absences')),
+      value: Number(formData.get('select-value')),
+      month: selectedMonth,
+    }
+
+    await createNewStudent(data)
+
+    form.reset()
+
+    nameInputRef.current?.focus()
+
+    onStudentCreated()
+  }
+
   return (
     <div>
-      <form action="post" className="flex flex-col">
+      <form onSubmit={handleSubmit} className="flex flex-col">
+        <label htmlFor="month">Mês</label>
+        <select
+          name="month"
+          value={selectedMonth}
+          onChange={(e) => onMonthChange(Number(e.target.value))}
+        >
+          {[...Array(12)].map((_, i) => (
+            <option key={i + 1} value={i + 1}>
+              {i + 1}
+            </option>
+          ))}
+        </select>
+
         <label htmlFor="student-name">Nome: </label>
-        <input type="text" name="student-name" placeholder="Nome" />
+        <input
+          ref={nameInputRef}
+          type="text"
+          name="student-name"
+          placeholder="Nome"
+        />
 
         <label htmlFor="classes">Aulas dadas: </label>
         <input

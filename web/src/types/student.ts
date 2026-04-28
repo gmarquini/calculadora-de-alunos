@@ -4,4 +4,5 @@ export type Student = {
   classes: number
   absences: number
   value: number
+  month: number
 }

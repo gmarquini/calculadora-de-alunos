@@ -1,7 +1,7 @@
 function CalcStudentList({ students }) {
   // falta multiplicar os valores pelas aulas dadas e faltas.
   const amount = students.reduce((acc, student) => {
-    return acc + student.value
+    return acc + student.value * student.classes * student.absences
   }, 0)
 
   return (
