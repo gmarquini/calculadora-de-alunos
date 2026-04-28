@@ -13,21 +13,10 @@ model Students {
   classes Int?
   absences Int?
   value Float
-
-  month Month[]
+  month Int @default(1)
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @default(now()) @map("updated_at")
 
   @@map("students")
-}
-
-model Month {
-  id String @id @default(uuid())
-  name Int
-
-  students Students[]
-  
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @default(now()) @map("updated_at")
 }
