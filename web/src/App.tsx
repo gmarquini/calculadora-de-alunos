@@ -1,5 +1,5 @@
 import './App.css'
-import { CalcStudentList } from './components/CalcStudentsList'
+import { CalcTotal } from './components/CalcTotal'
 import { Form } from './components/Form'
 import { StudentFromDB } from './components/StudentsFromDB'
 import { useState, useEffect } from 'react'
@@ -15,6 +15,7 @@ function App() {
     try {
       const response = await api.get('/students')
       setStudents(response.data.students)
+      console.log(students)
     } catch (error) {
       console.log('Erro ao buscar alunos', error)
     } finally {
@@ -22,11 +23,11 @@ function App() {
     }
   }
 
+  const filteredStudents = students.filter((s) => s.month === selectedMonth)
+
   useEffect(() => {
     fetchStudents()
   }, [])
-
-  const filteredStudents = students.filter((s) => s.month === selectedMonth)
 
   if (loading) {
     return <p>Loading...</p>
@@ -34,15 +35,15 @@ function App() {
 
   return (
     <div className="flex h-screen overflow-hidden">
-      <div className="mx-10 p-20 flex flex-col bg-blue-400 h-min rounded-2xl items-center shadow-2xl min-w-75 mt-4">
+      <div className="ml-50 mr-10 p-20 flex flex-col bg-blue-400 h-min rounded-2xl items-center shadow-2xl min-w-75 mt-4">
         <Form
           onStudentCreated={fetchStudents}
           onMonthChange={setSelectedMonth}
           selectedMonth={selectedMonth}
         />
-        <CalcStudentList students={filteredStudents} />
+        <CalcTotal students={filteredStudents} />
       </div>
-      <div className="flex-1 min-h-0 overflow-y-auto pr-4">
+      <div className="flex-1 min-h-0 overflow-y-auto flex flex-wrap pr-4">
         <StudentFromDB students={filteredStudents} />
 
         {filteredStudents.length === 0 && (

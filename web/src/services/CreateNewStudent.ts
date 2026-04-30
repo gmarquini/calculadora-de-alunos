@@ -9,5 +9,5 @@ type CreateStudentData = {
 }
 
 export async function createNewStudent(data: CreateStudentData) {
-  await api.post('students', data)
+  await api.post('/students', data)
 }

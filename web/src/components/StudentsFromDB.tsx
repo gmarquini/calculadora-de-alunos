@@ -6,11 +6,11 @@ type Props = {
 
 function StudentFromDB({ students }: Props) {
   return (
-    <div className="flex flex-col gap-4 my-4">
+    <div className="flex flex-wrap justify-items-start gap-4 my-4">
       {students.map((student) => (
         <div
           key={student.id}
-          className="flex flex-col bg-blue-500 text-white w-80 p-3 rounded-md"
+          className="flex flex-col bg-blue-500 text-white w-80 h-40 p-3 rounded-md"
         >
           <h3>Nome: {student.name}</h3>
           <span>Aulas dadas: {student.classes}</span>
