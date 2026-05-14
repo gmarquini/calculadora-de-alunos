@@ -15,12 +15,17 @@ function App() {
     try {
       const response = await api.get('/students')
       setStudents(response.data.students)
-      console.log(students)
     } catch (error) {
       console.log('Erro ao buscar alunos', error)
     } finally {
       setLoading(false)
     }
+  }
+
+  function handleDeleteStudent(id: string) {
+    setStudents((prevStudents) =>
+      prevStudents.filter((student) => student.id !== id)
+    )
   }
 
   const filteredStudents = students.filter((s) => s.month === selectedMonth)
@@ -44,10 +49,13 @@ function App() {
         <CalcTotal students={filteredStudents} />
       </div>
       <div className="flex-1 min-h-0 overflow-y-auto flex flex-wrap pr-4">
-        <StudentFromDB students={filteredStudents} />
+        <StudentFromDB
+          students={filteredStudents}
+          onDeleteStudent={handleDeleteStudent}
+        />
 
         {filteredStudents.length === 0 && (
-          <p className="w-80 ">Nenhum aluno neste mês</p>
+          <p className="w-80 mr-157.5">Nenhum aluno neste mês</p>
         )}
       </div>
     </div>
